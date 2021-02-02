@@ -1,0 +1,20 @@
+name: scp files
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v1
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        key: ${{ secrets.KEY }}
+        pub: ${{ secrets.PUB }}
+        source: "tests/a.txt,tests/b.txt"
+        target: "test"
+ 
