@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
-      uses: siva1024/scp-deployer
+      uses: siva1024/scp-deployer@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
