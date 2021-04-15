@@ -53,5 +53,6 @@ if [ $KEY ]; then
 
 else
     sshpassTransfer $PORT $CONNECT_TIMEOUT $USERNAME $HOST $SOURCE $TARGET $PASSWORD
+fi
 
 echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
