@@ -48,7 +48,7 @@ else
 fi
 echo ""
 
-if [ $KEY ]
+if [ $KEY ]; then
     scpTransfer $PORT $CONNECT_TIMEOUT $USERNAME $HOST $SOURCE $TARGET
 
 else
