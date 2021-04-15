@@ -14,9 +14,9 @@ inputs:
   key:
     description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
     required: false
-  passphrase:
-    description: 'phasefrase to open the ssh key if available'
-    required: false
+  pub:
+    description: 'content of ssh public key. ex raw content of ~/.ssh/id_rsa.pub'
+    required: false    
   port:
     description: 'ssh remote port'
     default: 22
@@ -25,17 +25,12 @@ inputs:
     default: "30s"
     required: false
   source:
-    description: 'source to copy'
+    description: 'source to copy from'
     required: false
   target:
-    description: 'destination for copy'
+    description: 'destination to download on server'
     required: false
-  initial:
-    description: 'destination for copy'
-    required: false
-  finial: 
-    description: 'destination for copy'
-    required: false
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
