@@ -29,6 +29,8 @@ sshpassTransfer(){
 
 echo "Hostname: "$INPUT_HOST
 echo "Port: "$INPUT_PORT
+echo "Key: "$INPUT_KEY
+echo "Pub: "$INPUT_PUB
 
 echo "Checking the configurations"
 if [[ -z "$INPUT_HOST" || -z "$INPUT_USERNAME" ]]; then
