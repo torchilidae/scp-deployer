@@ -10,9 +10,10 @@ sshSetup(){
     echo "Setting up the SSH folders"
     mkdir ~/.ssh/ && chmod 0700 ~/.ssh/
     export HOST_IP=`getent hosts "$3" | awk '{ print $1 }'`
+    echo $HOST_IP
     ssh-keyscan github.com > ~/.ssh/known_hosts
     ssh-keyscan $3 >> ~/.ssh/known_hosts
-    if [ "HOST_IP" ]; then
+    if [ "$HOST_IP" ]; then
         ssh-keyscan "$HOST_IP" >> ~/.ssh/known_hosts
     fi
 
