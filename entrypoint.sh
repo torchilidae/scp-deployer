@@ -41,7 +41,7 @@ else
     echo "Host:"$INPUT_HOST "User:" $INPUT_USERNAME
 fi
 
-if [[ -z "$INPUT_KEY" || -z "$INPUT_PASSWORD" ]]; then
+if [[ -z "$INPUT_KEY" && -z "$INPUT_PASSWORD" ]]; then
     echo "No Password or SSH keys detected"
     exitApplication
 elif [[ "$INPUT_KEY" && -z "$INPUT_PUB" ]]; then
