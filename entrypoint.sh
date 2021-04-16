@@ -27,35 +27,35 @@ sshpassTransfer(){
     echo "sshpass -p $7 scp -r -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6""
 }
 
-echo "Hostname: "$HOST
-echo "Port: "$PORT
+echo "Hostname: "$INPUT_HOST
+echo "Port: "$INPUT_PORT
 
 echo "Checking the configurations"
-if [[ -z "$HOST" || -z "$USERNAME" ]]; then
+if [[ -z "$INPUT_HOST" || -z "$INPUT_USERNAME" ]]; then
     echo "No Host and user data found to connect"
     exitApplication
 else
     echo "Host and User Data Found"
-    echo "Host:"$HOST "User:" $USERNAME
+    echo "Host:"$INPUT_HOST "User:" $INPUT_USERNAME
 fi
 
-if [[ -z "$KEY" || -z "$PASSWORD" ]]; then
+if [[ -z "$INPUT_KEY" || -z "$INPUT_PASSWORD" ]]; then
     echo "No Password or SSH keys detected"
     exitApplication
-elif [[ "$KEY" && -z "$PUB" ]]; then
+elif [[ "$INPUT_KEY" && -z "$INPUT_PUB" ]]; then
     echo "No Public key detected for the private key"
     exitApplication
 else
     echo "Password/SSH Keys detected"
-    sshSetup "$KEY" "$PUB"
+    sshSetup "$INPUT_KEY" "$INPUT_PUB"
 fi
 echo ""
 
-if [[ "$KEY" ]]; then
-    scpTransfer $PORT $CONNECT_TIMEOUT $USERNAME $HOST $SOURCE $TARGET
+if [[ "$INPUT_KEY" ]]; then
+    scpTransfer $INPUT_PORT $INPUT_CONNECT_TIMEOUT $INPUT_USERNAME $INPUT_HOST $INPUT_SOURCE $INPUT_TARGET
 
 else
-    sshpassTransfer $PORT $CONNECT_TIMEOUT $USERNAME $HOST $SOURCE $TARGET $PASSWORD
+    sshpassTransfer $INPUT_PORT $INPUT_CONNECT_TIMEOUT $INPUT_USERNAME $INPUT_HOST $INPUT_SOURCE $INPUT_TARGET $INPUT_PASSWORD
 fi
 
 echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
