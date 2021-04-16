@@ -27,11 +27,6 @@ sshpassTransfer(){
     echo "sshpass -p $7 scp -r -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6""
 }
 
-echo "Hostname: "$INPUT_HOST
-echo "Port: "$INPUT_PORT
-echo "Key: "$INPUT_KEY
-echo "Pub: "$INPUT_PUB
-
 echo "Checking the configurations"
 if [[ -z "$INPUT_HOST" || -z "$INPUT_USERNAME" ]]; then
     echo "No Host and user data found to connect"
