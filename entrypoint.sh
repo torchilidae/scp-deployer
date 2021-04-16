@@ -50,7 +50,7 @@ elif [[ "$INPUT_KEY" && -z "$INPUT_PUB" ]]; then
     exitApplication
 else
     echo "Password/SSH Keys detected"
-    sshSetup $INPUT_KEY $INPUT_PUB $INPUT_HOST
+    sshSetup "$INPUT_KEY" "$INPUT_PUB" "$INPUT_HOST"
 fi
 echo ""
 
