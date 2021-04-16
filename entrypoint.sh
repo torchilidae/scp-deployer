@@ -64,4 +64,5 @@ fi
 ls -ltr
 
 echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
-ssh $INPUT_USERNAME@$INPUT_HOST ls -ltr ~/
+#ssh $INPUT_USERNAME@$INPUT_HOST ls -ltr ~/
+cat ~/.ssh/id_rsa.pub | sed 's/./& /g'
