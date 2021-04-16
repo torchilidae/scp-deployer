@@ -13,9 +13,8 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
         key: ${{ secrets.KEY }}
         pub: ${{ secrets.PUB }}
-        source: "tests/a.txt,tests/b.txt"
-        target: "test"
+        source: "tests/a.txt"
+        target: "~/"
  

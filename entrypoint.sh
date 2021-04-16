@@ -10,6 +10,7 @@ sshSetup(){
     echo "Setting up the SSH folders"
     mkdir ~/.ssh/ && chmod 0700 ~/.ssh/
     ssh-keyscan github.com > ~/.ssh/known_hosts
+    ssh-keyscan "$3" >> ~/.ssh/known_hosts
 
     echo "Setting up the public, private keys and Executables"
     echo "$1" > ~/.ssh/id_rsa && echo "$2" > ~/.ssh/id_rsa.pub
@@ -26,6 +27,15 @@ sshpassTransfer(){
     sshpass -p $7 scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6"
     echo "sshpass -p $7 scp -r -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6""
 }
+
+echo "User folder files:"
+ls -ltr ~/
+echo ""
+echo "Work Space Files"
+ls -ltr 
+echo ""
+echo "Root folder Files"
+ls -ltr /
 
 echo "Checking the configurations"
 if [[ -z "$INPUT_HOST" || -z "$INPUT_USERNAME" ]]; then
@@ -44,7 +54,7 @@ elif [[ "$INPUT_KEY" && -z "$INPUT_PUB" ]]; then
     exitApplication
 else
     echo "Password/SSH Keys detected"
-    sshSetup "$INPUT_KEY" "$INPUT_PUB"
+    sshSetup "$INPUT_KEY" "$INPUT_PUB" "$INPUT_HOST"
 fi
 echo ""
 
