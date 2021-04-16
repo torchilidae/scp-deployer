@@ -64,3 +64,4 @@ fi
 ls -ltr
 
 echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
+ssh $INPUT_USERNAME@$INPUT_HOST ls -ltr ~/
