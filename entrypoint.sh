@@ -9,8 +9,12 @@ exitApplication () {
 sshSetup(){
     echo "Setting up the SSH folders"
     mkdir ~/.ssh/ && chmod 0700 ~/.ssh/
+    export ipaddress=`getent hosts "$3" | awk '{ print $1 }'`
     ssh-keyscan github.com > ~/.ssh/known_hosts
     ssh-keyscan "$3" >> ~/.ssh/known_hosts
+    if [ "ipaddress" ]; then
+        ssh-keyscan "$ipaddress" >> ~/.ssh/known_hosts
+    fi
 
     echo "Setting up the public, private keys and Executables"
     echo "$1" > ~/.ssh/id_rsa && echo "$2" > ~/.ssh/id_rsa.pub
