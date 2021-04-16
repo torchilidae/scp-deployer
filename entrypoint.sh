@@ -71,4 +71,4 @@ echo ""
 echo "ssh folder"
 ls -ltr ~/.ssh/
 
-ssh root@remote.torchlilidae.com
+ssh root@remote.torchilidae.com
