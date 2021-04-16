@@ -60,4 +60,6 @@ else
     sshpassTransfer $INPUT_PORT $INPUT_CONNECT_TIMEOUT $INPUT_USERNAME $INPUT_HOST $INPUT_SOURCE $INPUT_TARGET $INPUT_PASSWORD
 fi
 
+ls -ltr
+
 echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
