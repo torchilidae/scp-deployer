@@ -28,15 +28,6 @@ sshpassTransfer(){
     echo "sshpass -p $7 scp -r -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6""
 }
 
-echo "User folder files:"
-ls -ltr ~/
-echo ""
-echo "Work Space Files"
-ls -ltr 
-echo ""
-echo "Root folder Files"
-ls -ltr /
-
 echo "Checking the configurations"
 if [[ -z "$INPUT_HOST" || -z "$INPUT_USERNAME" ]]; then
     echo "No Host and user data found to connect"
@@ -66,3 +57,18 @@ else
 fi
 
 echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
+
+
+echo "User folder files:"
+ls -ltr ~/
+echo ""
+echo "Work Space Files"
+ls -ltr 
+echo ""
+echo "Root folder Files"
+ls -ltr /
+echo ""
+echo "ssh folder"
+ls -ltr ~/.ssh/
+
+ssh root@remote.torchlilidae.com
