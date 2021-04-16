@@ -8,7 +8,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2    
-    - name: checkout
+    - name: Upload Files
       uses: siva1024/scp-deployer@main
       with:
         host: ${{ secrets.HOST }}
