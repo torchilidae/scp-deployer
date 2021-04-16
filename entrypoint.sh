@@ -23,7 +23,7 @@ sshSetup(){
 }
 
 scpTransfer(){
-    scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6"
+    scp -qr -P $1 -o ConnectTimeout=$2 -o StrictHostKeyChecking=no "$5" "$3"@"$4":"$6"
     echo "scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6""
 }
 
@@ -61,20 +61,3 @@ else
 fi
 
 echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
-
-
-echo "User folder files:"
-ls -ltr ~/
-echo ""
-echo "Work Space Files"
-ls -ltr 
-echo ""
-echo "Root folder Files"
-ls -ltr /
-echo ""
-echo "ssh folder"
-ls -ltr ~/.ssh/
-
-cat ~/.ssh/known_hosts
-
-ssh root@remote.torchilidae.com
