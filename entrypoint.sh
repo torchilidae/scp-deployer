@@ -28,7 +28,7 @@ sshpassTransfer(){
 }
 
 echo "Checking the configurations"
-if [ -z "$HOST" || -z "$USERNAME" ]; then
+if [[ -z "$HOST" || -z "$USERNAME" ]]; then
     echo "No Host and user data found to connect"
     exitApplication
 else
@@ -36,10 +36,10 @@ else
     echo "Host:"$HOST "User:" $USERNAME
 fi
 
-if [ -z "$KEY" || -z "$PASSWORD" ]; then
+if [[ -z "$KEY" || -z "$PASSWORD" ]]; then
     echo "No Password or SSH keys detected"
     exitApplication
-elif [ "$KEY" && -z "$PUB" ]; then
+elif [[ "$KEY" && -z "$PUB" ]]; then
     echo "No Public key detected for the private key"
     exitApplication
 else
@@ -48,7 +48,7 @@ else
 fi
 echo ""
 
-if [ "$KEY" ]; then
+if [[ "$KEY" ]]; then
     scpTransfer $PORT $CONNECT_TIMEOUT $USERNAME $HOST $SOURCE $TARGET
 
 else
