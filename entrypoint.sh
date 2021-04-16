@@ -28,6 +28,7 @@ sshpassTransfer(){
 }
 
 echo "Hostname: "$HOST
+echo "Port: "$PORT
 
 echo "Checking the configurations"
 if [[ -z "$HOST" || -z "$USERNAME" ]]; then
