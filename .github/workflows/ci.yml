@@ -12,7 +12,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        passphrase: ${{ secrets.PASSPHRASE }}
         key: ${{ secrets.KEY }}
         pub: ${{ secrets.PUB }}
         source: "tests/a.txt,tests/b.txt"
