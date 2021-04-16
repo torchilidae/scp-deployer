@@ -9,7 +9,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2    
     - name: Upload Files
-      uses: siva1024/scp-deployer@main
+      uses: siva1024/scp-deployer@debug
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
