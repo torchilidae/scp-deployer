@@ -18,13 +18,17 @@ sshSetup(){
     fi
 
     echo "Setting up the public, private keys and Executables"
-    echo $1 > ~/.ssh/id_rsa && echo $2 > ~/.ssh/id_rsa.pub
+    echo "-----BEGIN OPENSSH PRIVATE KEY-----" >> ~/.ssh/id_rsa
+    echo $1 | tr " " "\n" | sed '1,4d' | tac | sed '1,4d' | tac >> ~/.ssh/id_rsa
+    echo "-----END OPENSSH PRIVATE KEY-----" >> ~/.ssh/id_rsa
+    echo "" >> ~/.ssh/id_rsa
+    echo $2 > ~/.ssh/id_rsa.pub
     chmod 600 ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa.pub
     ls -ltr ~/.ssh/
 }
 
 scpTransfer(){
-    scp -qr -P $1 -o ConnectTimeout=$2 -o StrictHostKeyChecking=no "$5" "$3"@"$4":"$6"
+    scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6"
     echo "scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6""
 }
 
@@ -64,9 +68,9 @@ fi
 ls -ltr
 
 echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
-#ssh $INPUT_USERNAME@$INPUT_HOST ls -ltr ~/
-sed -e 's/\(.\)/\1 /g' < ~/.ssh/id_rsa.pub
-echo ""
-sed -e 's/\(.\)/\1 /g' < ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa | tr " " "\n" | sed '1,4d' | tac | sed '1,4d' | tac
-sed 's/-----BEGIN OPENSSH PRIVATE KEY-----//g' < ~/.ssh/id_rsa
+ssh $INPUT_USERNAME@$INPUT_HOST ls -ltr ~/
+#sed -e 's/\(.\)/\1 /g' < ~/.ssh/id_rsa.pub
+#echo ""
+#sed -e 's/\(.\)/\1 /g' < ~/.ssh/id_rsa
+#cat ~/.ssh/id_rsa | tr " " "\n" | sed '1,4d' | tac | sed '1,4d' | tac
+#sed 's/-----BEGIN OPENSSH PRIVATE KEY-----//g' < ~/.ssh/id_rsa
