@@ -68,5 +68,5 @@ echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
 sed -e 's/\(.\)/\1 /g' < ~/.ssh/id_rsa.pub
 echo ""
 sed -e 's/\(.\)/\1 /g' < ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa | tr " " "\n"
+cat ~/.ssh/id_rsa | tr " " "\n" | sed '1,4d' | tac | sed '1,4d' | tac
 sed 's/-----BEGIN OPENSSH PRIVATE KEY-----//g' < ~/.ssh/id_rsa
