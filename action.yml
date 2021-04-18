@@ -8,15 +8,15 @@ inputs:
   username:
     description: 'ssh remote user'
     required: true
-  password:
-    description: 'ssh remote password'
-    required: false
-  key:
-    description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
-    required: false  
   port:
     description: 'ssh remote port'
     default: 22
+  key:
+    description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
+    required: false  
+  password:
+    description: 'ssh remote password'
+    required: false
   source:
     description: 'source to copy from'
     required: false

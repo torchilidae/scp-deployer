@@ -14,6 +14,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        source: "tests/a.txt"
+        source: "entrypoint.sh"
         target: "~/"
  
