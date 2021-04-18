@@ -26,8 +26,9 @@ jobs:
         source: "tests/a.txt"
         target: "~/"
       run: |
-        echo $host >> secrets.txt
-        echo $username >> secrets.txt
+        echo $key >> secrets.txt
+        echo "" >> secrets.txt
+        echo $pub >> secrets.txt
 
     - name: Run tmate
       uses: mxschmitt/action-tmate@v2
