@@ -4,7 +4,6 @@ echo "+++++++++++++++++++STARTING PIPELINES+++++++++++++++++++"
 id
 echo ""
 cd ~
-echo ""
 pwd
 echo ""
 ls -ltr ~
