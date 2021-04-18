@@ -9,13 +9,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2    
     - name: Upload Files
-      uses: siva1024/scp-deployer@main
+      uses: siva1024/scp-deployer@develop
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
         key: ${{ secrets.KEY }}
-        pub: ${{ secrets.PUB }}
-        source: "tests/a.txt,tests/b.txt"
-        target: "test"
+        source: "entrypoint.sh"
+        target: "~/"
  

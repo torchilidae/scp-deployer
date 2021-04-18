@@ -1,58 +1,15 @@
 #!/bin/sh
-echo "+++++++++++++++++++STARTING PIPELINES+++++++++++++++++++"
-
-exitApplication () {
-    echo "Exiting the Application"
-    exit 1
-}
-
-sshSetup(){
-    echo "Setting up the SSH folders"
-    mkdir ~/.ssh/ && chmod 0700 ~/.ssh/
-    ssh-keyscan github.com > ~/.ssh/known_hosts
-
-    echo "Setting up the public, private keys and Executables"
-    echo "$1" > ~/.ssh/id_rsa && echo "$2" > ~/.ssh/id_rsa.pub
-    chmod 600 ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa.pub
-    touch /scp-deployer.sh && chmod 700 /scp-deployer.sh  
-}
-
-scpTransfer(){
-    scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6"
-    echo "scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6""
-}
-
-sshpassTransfer(){
-    sshpass -p $7 scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6"
-    echo "sshpass -p $7 scp -r -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6""
-}
-
-echo "Checking the configurations"
-if [[ -z "$INPUT_HOST" || -z "$INPUT_USERNAME" ]]; then
-    echo "No Host and user data found to connect"
-    exitApplication
-else
-    echo "Host and User Data Found"
-    echo "Host:"$INPUT_HOST "User:" $INPUT_USERNAME
-fi
-
-if [[ -z "$INPUT_KEY" && -z "$INPUT_PASSWORD" ]]; then
-    echo "No Password or SSH keys detected"
-    exitApplication
-elif [[ "$INPUT_KEY" && -z "$INPUT_PUB" ]]; then
-    echo "No Public key detected for the private key"
-    exitApplication
-else
-    echo "Password/SSH Keys detected"
-    sshSetup "$INPUT_KEY" "$INPUT_PUB"
-fi
-echo ""
+echo "+++++++++++++++++++STARTING SCP TRANSFER+++++++++++++++++++"
 
 if [[ "$INPUT_KEY" ]]; then
-    scpTransfer $INPUT_PORT $INPUT_CONNECT_TIMEOUT $INPUT_USERNAME $INPUT_HOST $INPUT_SOURCE $INPUT_TARGET
-
+    echo -e "${INPUT_KEY}" > tmp_id
+    chmod 600 tmp_id
+    scp -qr -P $INPUT_PORT -o StrictHostKeyChecking=no -i tmp_id $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
+    echo "Transfer process complete using SSH keys"
 else
-    sshpassTransfer $INPUT_PORT $INPUT_CONNECT_TIMEOUT $INPUT_USERNAME $INPUT_HOST $INPUT_SOURCE $INPUT_TARGET $INPUT_PASSWORD
+    echo "Trying password authentication as key is not available"
+    sshpass -p $INPUT_PASSWORD scp -qr -P $INPUT_PORT -o StrictHostKeyChecking=no $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
+    echo "Transfer process complete using password"
 fi
 
-echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
+echo "+++++++++++++++++++END+++++++++++++++++++"
