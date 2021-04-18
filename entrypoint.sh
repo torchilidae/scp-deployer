@@ -17,11 +17,11 @@ echo "+++++++++++++++++++STARTING PIPELINES+++++++++++++++++++"
 #    sshpass -p $7 scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6"
 #}
 
-echo -e "${INPUT_KEY}" >__TEMPKEY
-chmod 600 __TEMPKEY
+echo -e "${INPUT_KEY}" > tmpid
+chmod 600 tmpid
 
 if [[ "$INPUT_KEY" ]]; then
-    scp -qr -P $INPUT_PORT -o StrictHostKeyChecking=no -v -i __TEMPKEY $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
+    scp -qr -P $INPUT_PORT -o StrictHostKeyChecking=no -v -i tmpid $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
     #scpTransfer $INPUT_PORT $INPUT_CONNECT_TIMEOUT $INPUT_USERNAME $INPUT_HOST $INPUT_SOURCE $INPUT_TARGET
 
 else
