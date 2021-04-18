@@ -6,9 +6,9 @@ echo ""
 cd /home/torch
 pwd
 echo ""
-ls -ltr ~
+pwd ~
 echo ""
-ls -ltr ~/..
+ls -ltr /home
 pwd
 cd /home/torch
 
