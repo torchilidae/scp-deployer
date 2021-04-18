@@ -5,6 +5,8 @@ id
 echo ""
 cd ~
 echo ""
+pwd
+echo ""
 ls -ltr ~
 echo ""
 ls -ltr ~/..
