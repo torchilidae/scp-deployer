@@ -17,19 +17,4 @@ jobs:
         pub: ${{ secrets.PUB }}
         source: "tests/a.txt"
         target: "~/"
-    - name: Set up secret file
-      env:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        pub: ${{ secrets.PUB }}
-        source: "tests/a.txt"
-        target: "~/"
-      run: |
-        echo $key >> secrets.txt
-        echo "" >> secrets.txt
-        echo $pub >> secrets.txt
-
-    - name: Run tmate
-      uses: mxschmitt/action-tmate@v2
  
