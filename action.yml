@@ -13,10 +13,7 @@ inputs:
     required: false
   key:
     description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
-    required: false
-  pub:
-    description: 'content of ssh public key. ex raw content of ~/.ssh/id_rsa.pub'
-    required: false    
+    required: false  
   port:
     description: 'ssh remote port'
     default: 22
