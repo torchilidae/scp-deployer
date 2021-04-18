@@ -1,6 +1,8 @@
 #!/bin/sh
 echo "+++++++++++++++++++STARTING PIPELINES+++++++++++++++++++"
 
+id
+
 exitApplication () {
     echo "Exiting the Application"
     exit 1
