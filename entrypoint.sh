@@ -2,6 +2,9 @@
 echo "+++++++++++++++++++STARTING PIPELINES+++++++++++++++++++"
 
 id
+cd ~
+pwd
+
 
 exitApplication () {
     echo "Exiting the Application"
