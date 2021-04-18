@@ -19,10 +19,15 @@ jobs:
         target: "~/"
     - name: Set up secret file
       env:
-        DEBUG_PASSWORD: ${{ secrets.KEY }}
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        pub: ${{ secrets.PUB }}
+        source: "tests/a.txt"
+        target: "~/"
       run: |
-        echo $DEBUG_PASSWORD >> secrets.txt
-        echo $DEBUG_SECRET_KEY >> secrets.txt
+        echo $host >> secrets.txt
+        echo $username >> secrets.txt
 
     - name: Run tmate
       uses: mxschmitt/action-tmate@v2
