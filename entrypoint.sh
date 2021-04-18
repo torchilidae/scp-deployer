@@ -21,9 +21,7 @@ echo -e "${INPUT_KEY}" > tmpid
 chmod 600 tmpid
 
 if [[ "$INPUT_KEY" ]]; then
-    scp -qr -P $INPUT_PORT -o StrictHostKeyChecking=no -v -i tmpid $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
-    #scpTransfer $INPUT_PORT $INPUT_CONNECT_TIMEOUT $INPUT_USERNAME $INPUT_HOST $INPUT_SOURCE $INPUT_TARGET
-
+    scp -qr -P $INPUT_PORT -o ConnectTimeout=$INPUT_CONNECT_TIMEOUT -o StrictHostKeyChecking=no -i tmpid $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
 else
     echo ""
     #sshpassTransfer $INPUT_PORT $INPUT_CONNECT_TIMEOUT $INPUT_USERNAME $INPUT_HOST $INPUT_SOURCE $INPUT_TARGET $INPUT_PASSWORD
