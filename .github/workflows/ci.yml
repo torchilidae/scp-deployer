@@ -14,7 +14,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        pub: ${{ secrets.PUB }}
         source: "tests/a.txt"
         target: "~/"
  

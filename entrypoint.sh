@@ -18,6 +18,7 @@ echo "+++++++++++++++++++STARTING PIPELINES+++++++++++++++++++"
 #}
 
 echo -e "${INPUT_KEY}" >__TEMPKEY
+chmod 600 __TEMPKEY
 
 if [[ "$INPUT_KEY" ]]; then
     scp -qr -P $INPUT_PORT -o StrictHostKeyChecking=no -v -i __TEMPKEY $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
