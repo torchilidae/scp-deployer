@@ -2,7 +2,12 @@
 echo "+++++++++++++++++++STARTING PIPELINES+++++++++++++++++++"
 
 id
+echo ""
 cd ~
+echo ""
+ls -ltr ~
+echo ""
+ls -ltr ~/..
 pwd
 
 
