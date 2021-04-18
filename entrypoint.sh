@@ -1,32 +1,15 @@
 #!/bin/sh
-echo "+++++++++++++++++++STARTING PIPELINES+++++++++++++++++++"
-
-#sshSetup(){
-#    echo "Setting up the public, private keys and Executables"
-#    echo "-----BEGIN OPENSSH PRIVATE KEY-----" >> tmp_id
-#    echo $1 | tr " " "\n" | sed '1,4d' | tac | sed '1,4d' | tac >> tmp_id
-#    echo "-----END OPENSSH PRIVATE KEY-----" >> tmp_id
-#    echo "" >> tmp_id
-#}
-
-#scpTransfer(){
-#    scp -qr -P $1 -i tmps_id -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6"
-#}
-#
-#sshpassTransfer(){
-#    sshpass -p $7 scp -qr -P $1 -o ConnectTimeout=$2 "$5" "$3"@"$4":"$6"
-#}
-
-echo -e "${INPUT_KEY}" > tmpid
-chmod 600 tmpid
+echo "+++++++++++++++++++STARTING SCP TRANSFER+++++++++++++++++++"
 
 if [[ "$INPUT_KEY" ]]; then
-    scp -qr -P $INPUT_PORT -o ConnectTimeout=$INPUT_CONNECT_TIMEOUT -o StrictHostKeyChecking=no -i tmpid $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
+    echo -e "${INPUT_KEY}" > tmp_id
+    chmod 600 tmp_id
+    scp -qr -P $INPUT_PORT -o StrictHostKeyChecking=no -i tmp_id $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
+    echo "Transfer process complete using SSH keys"
 else
-    echo ""
-    #sshpassTransfer $INPUT_PORT $INPUT_CONNECT_TIMEOUT $INPUT_USERNAME $INPUT_HOST $INPUT_SOURCE $INPUT_TARGET $INPUT_PASSWORD
+    echo "Trying password authentication as key is not available"
+    sshpass -p $INPUT_PASSWORD scp -qr -P $INPUT_PORT -o StrictHostKeyChecking=no $INPUT_SOURCE "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_TARGET"
+    echo "Transfer process complete using password"
 fi
 
-ls -ltr
-
-echo "+++++++++++++++++++END PIPELINES+++++++++++++++++++"
+echo "+++++++++++++++++++END+++++++++++++++++++"

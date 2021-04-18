@@ -17,10 +17,6 @@ inputs:
   port:
     description: 'ssh remote port'
     default: 22
-  connect_timeout:
-    description: 'connection timeout to remote host'
-    default: "30s"
-    required: false
   source:
     description: 'source to copy from'
     required: false
