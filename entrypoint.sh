@@ -3,14 +3,10 @@ echo "+++++++++++++++++++STARTING PIPELINES+++++++++++++++++++"
 
 id
 echo ""
-cd /home/torch
 pwd
 echo ""
-pwd ~
+cd ~ && pwd
 echo ""
-ls -ltr /home
-pwd
-cd /home/torch
 
 exitApplication () {
     echo "Exiting the Application"
