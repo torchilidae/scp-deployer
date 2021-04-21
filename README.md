@@ -35,7 +35,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2    
     - name: Upload Files
-      uses: siva1024/scp-deployer@latest
+      uses: torchilidae/scp-deployer@latest
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
